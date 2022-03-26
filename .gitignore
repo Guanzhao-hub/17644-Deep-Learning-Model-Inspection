@@ -7,3 +7,7 @@
 /backpropagration_approach/DeepLift/deeplift/examples/mnist/grab_model.sh.5
 /backpropagration_approach/DeepLift/deeplift/examples/mnist/grab_model.sh.6
 /backpropagration_approach/DeepLift/deeplift/examples/mnist/grab_model.sh.7
+/YOLOv3/checkpoints/yolov3-tiny.tf.data-00000-of-00001
+/YOLOv3/checkpoints/yolov3-tiny.tf.index
+/YOLOv3/data/yolov3-tiny.weights
+/YOLOv3/output.jpg
