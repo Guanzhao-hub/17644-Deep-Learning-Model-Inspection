@@ -9,6 +9,11 @@ from yolov3_tf2.models import (
 )
 from yolov3_tf2.dataset import transform_images, load_tfrecord_dataset
 from yolov3_tf2.utils import draw_outputs
+from trulens.nn.attribution import IntegratedGradients
+from trulens.visualizations import MaskVisualizer
+import matplotlib.pyplot as plt
+import PIL
+
 
 flags.DEFINE_string('classes', './data/coco.names', 'path to classes file')
 flags.DEFINE_string('weights', './checkpoints/yolov3.tf',
@@ -27,15 +32,16 @@ def main(_argv):
         tf.config.experimental.set_memory_growth(physical_device, True)
 
     if FLAGS.tiny:
-        yolo = YoloV3Tiny(classes=FLAGS.num_classes)
+        yolo, wrapped_yolo = YoloV3Tiny(classes=FLAGS.num_classes)
     else:
-        yolo = YoloV3(classes=FLAGS.num_classes)
+        yolo, wrapped_yolo = YoloV3(classes=FLAGS.num_classes)
 
     yolo.load_weights(FLAGS.weights).expect_partial()
     logging.info('weights loaded')
 
     class_names = [c.strip() for c in open(FLAGS.classes).readlines()]
     logging.info('classes loaded')
+
 
     if FLAGS.tfrecord:
         dataset = load_tfrecord_dataset(
@@ -48,12 +54,20 @@ def main(_argv):
 
     img = tf.expand_dims(img_raw, 0)
     img = transform_images(img, FLAGS.size)
-
     t1 = time.time()
-    boxes, scores, classes, nums = yolo(img)
+    boxes, scores, classes, nums = yolo.predict(img)
+    #
+    # ig_computer = IntegratedGradients(wrapped_yolo)
+    # with PIL.Image.open('./data/street.jpg') as PIL_img:
+    #     plt.imshow(PIL_img)
+    #     # x = np.array(PIL_img.resize((32, 32), PIL.Image.ANTIALIAS))[np.newaxis]
+    #     input_attributions = ig_computer.attributions(img)
+    #
+    # visualizer = MaskVisualizer(blur=10, threshold=0.95)
+    # visualization = visualizer(input_attributions, img, output_file="./trulens_visualizer.png")
+
     t2 = time.time()
     logging.info('time: {}'.format(t2 - t1))
-
     logging.info('detections:')
     for i in range(nums[0]):
         logging.info('\t{}, {}, {}'.format(class_names[int(classes[0][i])],
@@ -64,7 +78,6 @@ def main(_argv):
     img = draw_outputs(img, (boxes, scores, classes, nums), class_names)
     cv2.imwrite(FLAGS.output, img)
     logging.info('output saved to: {}'.format(FLAGS.output))
-
 
 if __name__ == '__main__':
     try:

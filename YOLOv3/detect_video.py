@@ -8,6 +8,8 @@ from yolov3_tf2.models import (
 )
 from yolov3_tf2.dataset import transform_images
 from yolov3_tf2.utils import draw_outputs
+from trulens.nn.attribution import IntegratedGradients
+from trulens.visualizations import MaskVisualizer
 
 
 flags.DEFINE_string('classes', './data/coco.names', 'path to classes file')

@@ -21,6 +21,7 @@ from tensorflow.keras.losses import (
     sparse_categorical_crossentropy
 )
 from .utils import broadcast_iou
+from trulens.nn.models import get_model_wrapper
 
 flags.DEFINE_integer('yolo_max_boxes', 100,
                      'maximum number of boxes per image')
@@ -266,6 +267,7 @@ def YoloV3(size=None, channels=3, anchors=yolo_anchors,
 
 def YoloV3Tiny(size=None, channels=3, anchors=yolo_tiny_anchors,
                masks=yolo_tiny_anchor_masks, classes=80, training=False):
+    print("272")
     x = inputs = Input([size, size, channels], name='input')
 
     x_8, x = DarknetTiny(name='yolo_darknet')(x)
@@ -277,7 +279,9 @@ def YoloV3Tiny(size=None, channels=3, anchors=yolo_tiny_anchors,
     output_1 = YoloOutput(128, len(masks[1]), classes, name='yolo_output_1')(x)
 
     if training:
-        return Model(inputs, (output_0, output_1), name='yolov3')
+        yolo_model = Model(inputs, (output_0, output_1), name='yolov3')
+        wrapped_yolo = get_model_wrapper(yolo_model)
+        return yolo_model, wrapped_yolo
 
     boxes_0 = Lambda(lambda x: yolo_boxes(x, anchors[masks[0]], classes),
                      name='yolo_boxes_0')(output_0)
@@ -285,7 +289,10 @@ def YoloV3Tiny(size=None, channels=3, anchors=yolo_tiny_anchors,
                      name='yolo_boxes_1')(output_1)
     outputs = Lambda(lambda x: yolo_nms(x, anchors, masks, classes),
                      name='yolo_nms')((boxes_0[:3], boxes_1[:3]))
-    return Model(inputs, outputs, name='yolov3_tiny')
+
+    yolo_model = Model(inputs, outputs, name='yolov3_tiny')
+    wrapped_yolo = get_model_wrapper(yolo_model)
+    return yolo_model, wrapped_yolo
 
 
 def YoloLoss(anchors, classes=80, ignore_thresh=0.5):
