@@ -1,0 +1,148 @@
+=> ground truth of 000001.jpg:\
+        stop sign 48 240 195 371\
+        bird 8 12 352 498\
+=> predict result of 000001.jpg:\
+        person 0.9890 47 21 349 480\
+        dog 0.6253 52 231 184 379\
+=> ground truth of 000002.jpg:\
+        sheep 139 200 207 301\
+=> predict result of 000002.jpg:\
+        train 0.9978 137 190 210 300\
+=> ground truth of 000003.jpg:\
+        horse 123 155 215 195\
+        boat 239 156 307 205\
+=> predict result of 000003.jpg:\
+=> ground truth of 000004.jpg:\
+        train 13 311 84 362\
+        train 362 330 500 389\
+        train 235 328 334 375\
+        train 175 327 252 364\
+        train 139 320 189 359\
+        train 108 325 150 353\
+        train 84 323 121 350\
+=> predict result of 000004.jpg:\
+        traffic light 0.9271 383 105 406 167\
+        car 0.9989 234 329 331 373\
+        car 0.9980 365 328 492 387\
+        car 0.9952 83 326 115 348\
+        car 0.9929 107 326 145 351\
+        car 0.9716 169 326 250 362\
+        car 0.8994 140 322 189 357\
+        car 0.8571 1 323 17 342\
+        car 0.3422 10 307 89 371\
+        fire hydrant 0.7216 382 330 389 347\
+        truck 0.7658 15 307 83 365\
+=> ground truth of 000006.jpg:\
+        cat 187 135 282 242\
+        fire hydrant 154 209 369 375\
+        boat 255 207 366 375\
+        boat 138 211 249 375\
+=> predict result of 000006.jpg:\
+        chair 0.9964 140 207 243 374\
+        chair 0.9504 277 188 306 232\
+        chair 0.8645 260 200 357 371\
+        chair 0.8169 299 191 329 246\
+        diningtable 0.7824 163 214 345 374\
+=> ground truth of 000008.jpg:\
+        boat 192 16 364 249\
+=> predict result of 000008.jpg:\
+        remote 0.9298 142 197 169 226\
+        cell phone 0.4778 128 124 154 142\
+        book 0.8578 20 136 104 166\
+        book 0.7421 19 149 104 176\
+        book 0.5399 205 207 288 264\
+        cup 0.9409 164 182 194 219\
+        teddy bear 0.8126 65 88 120 144\
+        bowl 0.4517 162 183 195 216\
+        chair 0.9946 189 23 361 246\
+        sofa 0.4287 435 220 498 373\
+=> ground truth of 000010.jpg:\
+        parking meter 87 97 258 427\
+        bird 133 72 245 284\
+=> predict result of 000010.jpg:\
+        person 0.4787 138 81 254 242\
+        dog 0.7988 77 149 239 428\
+        horse 0.3862 80 122 260 424\
+=> ground truth of 000011.jpg:\
+        truck 126 51 330 308\
+=> predict result of 000011.jpg:\
+        dog 0.6386 134 84 325 292\
+=> ground truth of 000013.jpg:\
+        traffic light 299 160 446 252\
+=> predict result of 000013.jpg:\
+        cow 0.5284 301 157 435 253\
+=> ground truth of 000014.jpg:\
+        bus 72 163 302 228\
+        train 185 194 500 316\
+        train 416 180 500 222\
+        bird 314 8 344 65\
+        bird 331 4 361 61\
+        bird 357 8 401 61\
+=> predict result of 000014.jpg:\
+        car 0.9944 192 190 499 315\
+        car 0.8937 148 198 289 247\
+        car 0.8343 421 178 497 226\
+        bus 0.9653 66 161 259 230\
+        tvmonitor 0.3886 457 2 499 85\
+=> ground truth of 000015.jpg:\
+        bicycle 77 136 360 358\
+=> predict result of 000015.jpg:\
+        bicycle 0.9692 64 122 358 361\
+        clock 0.5215 118 0 130 11\
+=> ground truth of 000018.jpg:\
+        stop sign 31 30 358 279\
+=> predict result of 000018.jpg:\
+        dog 0.9910 51 47 379 284\
+=> ground truth of 000022.jpg:\
+        parking meter 68 103 368 283\
+        bird 186 44 255 230\
+=> predict result of 000022.jpg:\
+        person 0.9958 184 56 250 221\
+        horse 0.9980 65 96 369 286\
+=> ground truth of 000025.jpg:\
+        traffic light 2 84 59 248\
+        traffic light 68 115 233 279\
+        traffic light 64 173 377 373\
+        bird 320 2 496 375\
+        bird 221 4 341 374\
+        bird 135 14 220 148\
+        traffic light 69 43 156 177\
+        bird 58 54 104 139\
+        bird 279 1 331 86\
+        bird 320 22 344 96\
+=> predict result of 000025.jpg:\
+        person 0.9975 312 2 499 374\
+        person 0.9952 63 46 153 205\
+        person 0.9894 212 7 345 367\
+        person 0.9863 134 10 225 139\
+        person 0.9858 200 5 253 111\
+        person 0.9764 276 0 335 98\
+        person 0.9145 336 0 385 95\
+        person 0.8049 177 1 201 15\
+        person 0.7137 59 53 103 135\
+        person 0.3435 323 10 366 117\
+        cow 0.9612 0 85 68 247\
+        sheep 0.6507 65 166 378 370\
+        tie 0.9736 374 93 407 149\
+        tie 0.9385 252 75 267 118\
+=> ground truth of 000027.jpg:\
+        bird 174 101 349 351\
+=> predict result of 000027.jpg:\
+        person 1.0000 171 97 352 342\
+        skateboard 0.3240 277 213 373 354\
+=> ground truth of 000028.jpg:\
+        truck 63 18 374 500\
+=> predict result of 000028.jpg:\
+        cat 0.9971 51 18 374 497\
+=> ground truth of 000029.jpg:\
+        stop sign 56 63 284 290\
+=> predict result of 000029.jpg:\
+        dog 0.9972 25 61 291 287\
+=> ground truth of 000031.jpg:\
+        sheep 41 77 430 255\
+=> predict result of 000031.jpg:\
+        train 0.9997 44 79 412 262\
+=> ground truth of 000037.jpg:\
+        stop sign 61 96 464 339\
+=> predict result of 000037.jpg:\
+        dog 0.9981 126 96 485 320}
