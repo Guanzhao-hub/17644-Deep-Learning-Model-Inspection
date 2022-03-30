@@ -1,0 +1,99 @@
+# AP and precision/recall per class
+100.00% = bicycle AP  
+ Precision: ['0.00', '1.00', '0.00']
+ Recall   :['0.00', '1.00', '1.00']
+
+0.00% = bird AP  
+ Precision: ['0.00', '0.00']
+ Recall   :['0.00', '1.00']
+
+0.00% = boat AP  
+ Precision: ['0.00', '0.00']
+ Recall   :['0.00', '1.00']
+
+100.00% = bus AP  
+ Precision: ['0.00', '1.00', '0.00']
+ Recall   :['0.00', '1.00', '1.00']
+
+0.00% = cat AP  
+ Precision: ['0.00', '0.00', '0.00']
+ Recall   :['0.00', '0.00', '1.00']
+
+0.00% = firehydrant AP  
+ Precision: ['0.00', '0.00', '0.00']
+ Recall   :['0.00', '0.00', '1.00']
+
+0.00% = horse AP  
+ Precision: ['0.00', '0.00', '0.00', '0.00']
+ Recall   :['0.00', '0.00', '0.00', '1.00']
+
+0.00% = parkingmeter AP  
+ Precision: ['0.00', '0.00']
+ Recall   :['0.00', '1.00']
+
+0.00% = sheep AP  
+ Precision: ['0.00', '0.00', '0.00']
+ Recall   :['0.00', '0.00', '1.00']
+
+0.00% = stopsign AP  
+ Precision: ['0.00', '0.00']
+ Recall   :['0.00', '1.00']
+
+0.00% = trafficlight AP  
+ Precision: ['0.00', '0.00', '0.00']
+ Recall   :['0.00', '0.00', '1.00']
+
+0.00% = train AP  
+ Precision: ['0.00', '0.00', '0.00', '0.00']
+ Recall   :['0.00', '0.00', '0.00', '1.00']
+
+0.00% = truck AP  
+ Precision: ['0.00', '0.00', '0.00']
+ Recall   :['0.00', '0.00', '1.00']
+
+
+# mAP of all classes
+mAP = 15.38%
+
+# Number of ground-truth objects per class
+bicycle: 1
+bird: 13
+boat: 4
+bus: 1
+cat: 1
+firehydrant: 1
+horse: 1
+parkingmeter: 2
+sheep: 2
+stopsign: 4
+trafficlight: 5
+train: 9
+truck: 2
+
+# Number of predicted objects per class
+bicycle: 1 (tp:1, fp:0)
+book: 3 (tp:0, fp:3)
+bowl: 1 (tp:0, fp:1)
+bus: 1 (tp:1, fp:0)
+car: 11 (tp:0, fp:11)
+cat: 1 (tp:0, fp:1)
+cellphone: 1 (tp:0, fp:1)
+chair: 5 (tp:0, fp:5)
+clock: 1 (tp:0, fp:1)
+cow: 2 (tp:0, fp:2)
+cup: 1 (tp:0, fp:1)
+diningtable: 1 (tp:0, fp:1)
+dog: 6 (tp:0, fp:6)
+firehydrant: 1 (tp:0, fp:1)
+horse: 2 (tp:0, fp:2)
+person: 14 (tp:0, fp:14)
+remote: 1 (tp:0, fp:1)
+sheep: 1 (tp:0, fp:1)
+skateboard: 1 (tp:0, fp:1)
+sofa: 1 (tp:0, fp:1)
+teddybear: 1 (tp:0, fp:1)
+tie: 2 (tp:0, fp:2)
+trafficlight: 1 (tp:0, fp:1)
+train: 2 (tp:0, fp:2)
+truck: 1 (tp:0, fp:1)
+tvmonitor: 1 (tp:0, fp:1)
