@@ -104,7 +104,7 @@ class YoloTest(object):
                 num_bbox_gt = len(bboxes_gt)
                 with open(ground_truth_path, 'w') as f:
                     for i in range(num_bbox_gt):
-                        class_name = self.classes[classes_gt[i]]
+                        class_name = self.classes[classes_gt[i]].replace(" ", "")
                         xmin, ymin, xmax, ymax = list(map(str, bboxes_gt[i]))
                         bbox_mess = ' '.join([class_name, xmin, ymin, xmax, ymax]) + '\n'
                         f.write(bbox_mess)
@@ -122,7 +122,7 @@ class YoloTest(object):
                         coor = np.array(bbox[:4], dtype=np.int32)
                         score = bbox[4]
                         class_ind = int(bbox[5])
-                        class_name = self.classes[class_ind]
+                        class_name = self.classes[class_ind].replace(" ", "")
                         score = '%.4f' % score
                         xmin, ymin, xmax, ymax = list(map(str, coor))
                         bbox_mess = ' '.join([class_name, score, xmin, ymin, xmax, ymax]) + '\n'
