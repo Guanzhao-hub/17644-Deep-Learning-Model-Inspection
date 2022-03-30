@@ -16,3 +16,12 @@
 /YOLOv3_Notebook/Face Mask Dataset/
 /YOLOv3_Notebook/Face_Mask_Dataset/
 /YOLOv3_Notebook/face_mask_detection/
+/data/
+/checkpoint/yolov3_coco.ckpt.data-00000-of-00001
+/checkpoint/yolov3_coco.ckpt.index
+/checkpoint/yolov3_coco.ckpt.meta
+/checkpoint/yolov3_coco.tar.gz
+/checkpoint/yolov3_coco_demo.ckpt.data-00000-of-00001
+/checkpoint/yolov3_coco_demo.ckpt.index
+/checkpoint/yolov3_coco_demo.ckpt.meta
+/checkpoint/checkpoint
