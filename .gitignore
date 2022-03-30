@@ -3,3 +3,6 @@
 /mAP/ground-truth/
 /data/voc2007/
 /.idea/
+/backpropagration_approach/DeepLift/deeplift/examples/mnist/
+/checkpoint/
+/YOLOv3_Notebook/
