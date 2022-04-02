@@ -20,3 +20,7 @@
 /data/detection/2007_000061_jpg.rf.1f12f1624b9ffb0c83530283306bd9f7.jpg
 /data/detection/2007_000063_jpg.rf.6b6cd750e99533e2efea2a2d743b7af0.jpg
 /data/log/events.out.tfevents.1648860708.Guanzhaos-MBP
+/checkpoint/test_1_best_ckpt/
+core/__pycache__/
+data/log/
+nohup.out
