@@ -24,3 +24,7 @@
 core/__pycache__/
 data/log/
 nohup.out
+/checkpoint/yolov3_test_loss=9.5772.ckpt-13.data-00000-of-00001
+/checkpoint/yolov3_test_loss=9.5772.ckpt-13.index
+/checkpoint/yolov3_test_loss=9.5772.ckpt-13.meta
+/yolov3_coco.pb

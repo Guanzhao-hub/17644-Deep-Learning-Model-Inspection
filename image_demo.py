@@ -19,15 +19,15 @@ from PIL import Image
 
 return_elements = ["input/input_data:0", "pred_sbbox/concat_2:0", "pred_mbbox/concat_2:0", "pred_lbbox/concat_2:0"]
 pb_file         = "./yolov3_coco.pb"
-image_path      = "./docs/images/road.jpeg"
-num_classes     = 80
-input_size      = 416
+image_path      = "./docs/images/maksssksksss1.png"
+num_classes     = 1
+input_size      = 400
 graph           = tf.Graph()
 
 original_image = cv2.imread(image_path)
 original_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB)
 original_image_size = original_image.shape[:2]
-image_data = utils.image_preporcess(np.copy(original_image), [input_size, input_size])
+image_data = utils.image_preporcess(np.copy(original_image), [400, 156])
 image_data = image_data[np.newaxis, ...]
 
 return_tensors = utils.read_pb_return_tensors(graph, pb_file, return_elements)
@@ -42,7 +42,7 @@ pred_bbox = np.concatenate([np.reshape(pred_sbbox, (-1, 5 + num_classes)),
                             np.reshape(pred_mbbox, (-1, 5 + num_classes)),
                             np.reshape(pred_lbbox, (-1, 5 + num_classes))], axis=0)
 
-bboxes = utils.postprocess_boxes(pred_bbox, original_image_size, input_size, 0.3)
+bboxes = utils.postprocess_boxes(pred_bbox, original_image_size, 400, 0.3)
 bboxes = utils.nms(bboxes, 0.45, method='nms')
 image = utils.draw_bbox(original_image, bboxes)
 image = Image.fromarray(image)

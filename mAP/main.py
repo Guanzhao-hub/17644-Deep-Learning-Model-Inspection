@@ -258,6 +258,11 @@ def draw_plot_func(dictionary, n_classes, window_title, plot_title, x_label, out
   fig.tight_layout()
   # save the plot
   fig.savefig(output_path)
+  # show image
+  if to_show:
+    plt.show()
+  # close the plot
+  plt.close()
 
 """
  Create a "tmp_files/" and "results/" directory

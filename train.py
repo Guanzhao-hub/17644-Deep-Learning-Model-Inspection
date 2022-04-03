@@ -106,7 +106,7 @@ class YoloTrain(object):
 
         with tf.name_scope('loader_and_saver'):
             self.loader = tf.train.Saver(self.net_var)
-            self.saver  = tf.train.Saver(tf.global_variables(), max_to_keep=2)
+            self.saver  = tf.train.Saver(tf.global_variables(), max_to_keep=10)
 
         with tf.name_scope('summary'):
             tf.summary.scalar("learn_rate",      self.learn_rate)
@@ -173,13 +173,11 @@ class YoloTrain(object):
                 test_epoch_loss.append(test_step_loss)
 
             train_epoch_loss, test_epoch_loss = np.mean(train_epoch_loss), np.mean(test_epoch_loss)
-            ckpt_file = "./checkpoint/yolov3_test_loss=%.4f.h5" % test_epoch_loss
+            ckpt_file = "./checkpoint/yolov3_test_loss=%.4f.ckpt" % test_epoch_loss
             log_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
             print("=> Epoch: %2d Time: %s Train loss: %.2f Test loss: %.2f Saving %s ..."
                             %(epoch, log_time, train_epoch_loss, test_epoch_loss, ckpt_file))
             self.saver.save(self.sess, ckpt_file, global_step=epoch)
-        
-        self.model.save_weights("YOLOv3_Weights_{}.h5".format(time.strftime("%Y%m%d%H%M%S")))
 
 
 
