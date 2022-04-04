@@ -544,7 +544,7 @@ def get_args(**kwargs):
                         help='dataset dir', dest='dataset_dir')
     parser.add_argument('-pretrained', type=str, default="./models/yolov4.conv.137.pth", help='pretrained')
     parser.add_argument('-classes', type=int, default=80, help='dataset classes')
-    parser.add_argument('-train_label_path', dest='train_label', type=str, default='data/train.txt', help="train label path")
+    parser.add_argument('-train_label_path', dest='train_label', type=str, default='dataset/train.txt', help="train label path")
     parser.add_argument(
         '-optimizer', type=str, default='adam',
         help='training optimizer',
