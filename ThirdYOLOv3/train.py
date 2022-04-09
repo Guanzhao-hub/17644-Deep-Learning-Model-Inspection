@@ -32,6 +32,12 @@ if YOLO_TYPE == "yolov3":
     Darknet_weights = YOLO_V3_TINY_WEIGHTS if TRAIN_YOLO_TINY else YOLO_V3_WEIGHTS
 if TRAIN_YOLO_TINY: TRAIN_MODEL_NAME += "_Tiny"
 
+TRAIN_LOG_FILE_NAME = "WARMUP{}_BATCH{}_TRAIN_LR_INIT{}_TRAIN_LR_END{}_TRAIN_EPOCHS{}".format(TRAIN_WARMUP_EPOCHS,
+                                                                                              TRAIN_BATCH_SIZE,
+                                                                                              TRAIN_LR_INIT,
+                                                                                              TRAIN_LR_END,
+                                                                                              TRAIN_EPOCHS)
+
 def main():
     global TRAIN_FROM_CHECKPOINT
     
@@ -138,47 +144,48 @@ def main():
     mAP_model = Create_Yolo(input_size=YOLO_INPUT_SIZE, CLASSES=TRAIN_CLASSES) # create second model to measure mAP
 
     best_val_loss = 1000 # should be large at start
-    for epoch in range(TRAIN_EPOCHS):
-        for image_data, target in trainset:
-            results = train_step(image_data, target)
-            cur_step = results[0]%steps_per_epoch
-            print("epoch:{:2.0f} step:{:5.0f}/{}, lr:{:.6f}, giou_loss:{:7.2f}, conf_loss:{:7.2f}, prob_loss:{:7.2f}, total_loss:{:7.2f}"
-                  .format(epoch, cur_step, steps_per_epoch, results[1], results[2], results[3], results[4], results[5]))
+    with open('train_log_{}.txt'.format(TRAIN_LOG_FILE_NAME), 'w') as tf_train_file:
+        for epoch in range(TRAIN_EPOCHS):
+            for image_data, target in trainset:
+                results = train_step(image_data, target)
+                cur_step = results[0]%steps_per_epoch
+                print("epoch:{:2.0f} step:{:5.0f}/{}, lr:{:.6f}, giou_loss:{:7.2f}, conf_loss:{:7.2f}, prob_loss:{:7.2f}, total_loss:{:7.2f}"
+                    .format(epoch, cur_step, steps_per_epoch, results[1], results[2], results[3], results[4], results[5]))
 
-        if len(testset) == 0:
-            print("configure TEST options to validate model")
-            yolo.save_weights(os.path.join(TRAIN_CHECKPOINTS_FOLDER, TRAIN_MODEL_NAME))
-            continue
-        
-        count, giou_val, conf_val, prob_val, total_val = 0., 0, 0, 0, 0
-        for image_data, target in testset:
-            results = validate_step(image_data, target)
-            count += 1
-            giou_val += results[0]
-            conf_val += results[1]
-            prob_val += results[2]
-            total_val += results[3]
-        # writing validate summary data
-        with validate_writer.as_default():
-            tf.summary.scalar("validate_loss/total_val", total_val/count, step=epoch)
-            tf.summary.scalar("validate_loss/giou_val", giou_val/count, step=epoch)
-            tf.summary.scalar("validate_loss/conf_val", conf_val/count, step=epoch)
-            tf.summary.scalar("validate_loss/prob_val", prob_val/count, step=epoch)
-        validate_writer.flush()
+            if len(testset) == 0:
+                print("configure TEST options to validate model")
+                yolo.save_weights(os.path.join(TRAIN_CHECKPOINTS_FOLDER, TRAIN_MODEL_NAME))
+                continue
             
-        print("\n\ngiou_val_loss:{:7.2f}, conf_val_loss:{:7.2f}, prob_val_loss:{:7.2f}, total_val_loss:{:7.2f}\n\n".
-              format(giou_val/count, conf_val/count, prob_val/count, total_val/count))
+            count, giou_val, conf_val, prob_val, total_val = 0., 0, 0, 0, 0
+            for image_data, target in testset:
+                results = validate_step(image_data, target)
+                count += 1
+                giou_val += results[0]
+                conf_val += results[1]
+                prob_val += results[2]
+                total_val += results[3]
+            # writing validate summary data
+            with validate_writer.as_default():
+                tf.summary.scalar("validate_loss/total_val", total_val/count, step=epoch)
+                tf.summary.scalar("validate_loss/giou_val", giou_val/count, step=epoch)
+                tf.summary.scalar("validate_loss/conf_val", conf_val/count, step=epoch)
+                tf.summary.scalar("validate_loss/prob_val", prob_val/count, step=epoch)
+            validate_writer.flush()
+                
+            print("\n\ngiou_val_loss:{:7.2f}, conf_val_loss:{:7.2f}, prob_val_loss:{:7.2f}, total_val_loss:{:7.2f}\n\n".
+                format(giou_val/count, conf_val/count, prob_val/count, total_val/count))
+        
+            tf_train_file.write("{} ,{:7.2f}".format(str(epoch), total_val/count))
 
-        if TRAIN_SAVE_CHECKPOINT and not TRAIN_SAVE_BEST_ONLY:
-            save_directory = os.path.join(TRAIN_CHECKPOINTS_FOLDER, TRAIN_MODEL_NAME+"_val_loss_{:7.2f}".format(total_val/count))
-            yolo.save_weights(save_directory)
-        if TRAIN_SAVE_BEST_ONLY and best_val_loss>total_val/count:
-            save_directory = os.path.join(TRAIN_CHECKPOINTS_FOLDER, TRAIN_MODEL_NAME)
-            yolo.save_weights(save_directory)
-            best_val_loss = total_val/count
-        if not TRAIN_SAVE_BEST_ONLY and not TRAIN_SAVE_CHECKPOINT:
-            save_directory = os.path.join(TRAIN_CHECKPOINTS_FOLDER, TRAIN_MODEL_NAME)
-            yolo.save_weights(save_directory)
+            if best_val_loss>total_val/count:
+                save_directory = os.path.join(TRAIN_CHECKPOINTS_FOLDER,'whole_model', TRAIN_MODEL_NAME+"_val_loss_{:.3f}.h5".format(total_val/count))
+                yolo.save(save_directory, save_format="h5")
+                save_directory = os.path.join(TRAIN_CHECKPOINTS_FOLDER, 'tf_savedmodel',TRAIN_MODEL_NAME+"_val_loss_{:.3f}".format(total_val/count))
+                tf.saved_model.save(yolo, save_directory)
+                save_directory = os.path.join(TRAIN_CHECKPOINTS_FOLDER,'weights_only', TRAIN_MODEL_NAME+"_val_loss_{:.3f}".format(total_val/count))
+                yolo.save_weights(save_directory)
+                best_val_loss = total_val/count
 
     # measure mAP of trained custom model
     try:
