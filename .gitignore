@@ -25,3 +25,5 @@
 /checkpoint/yolov3_coco_demo.ckpt.index
 /checkpoint/yolov3_coco_demo.ckpt.meta
 /checkpoint/checkpoint
+/backpropagration_approach/tensorflow_compute_gradients/attribution_methods/Face Mask Dataset/
+/backpropagration_approach/tensorflow_compute_gradients/attribution_methods/classification_09831/
