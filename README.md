@@ -13,7 +13,7 @@ The trained models can be downloaded at here. _**These weights files are only av
 
 YOLO v4: https://drive.google.com/drive/folders/1CWRKxbusRi68W9Gir1rEd92kGCmIFEq2?usp=sharing
 
-YOLO v3:
+YOLO v3: https://drive.google.com/drive/folders/1BoszspQVtNqOgN9kNEoSU9qMciOjOTLY?usp=sharing
 
 
 
