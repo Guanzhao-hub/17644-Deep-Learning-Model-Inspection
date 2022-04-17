@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /.idea/
 /backpropagration_approach/
 /yolov4.weights
@@ -9,3 +10,23 @@
 /ThirdYOLOv3/yolov3.weights
 /ThirdYOLOv3/model_data/mask/images/
 /YOLOV3_TF2/data/images/
+=======
+ttest
+*.weights
+*.pth
+*.onnx
+*.engine
+*.pyc
+*.infer
+*.npy
+
+z_demo_*
+
+__pycache__
+.idea
+.vscode
+runs
+log
+
+data/outcome
+>>>>>>> Stashed changes
