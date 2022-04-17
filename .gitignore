@@ -1,0 +1,11 @@
+/.idea/
+/backpropagration_approach/
+/yolov4.weights
+/YOLOV3_TF2/.idea/
+/YOLOV3_TF2/yolov3.weights
+/YOLOv3_Notebook/Face_Mask_Dataset/
+/YOLOv3_Notebook/face_mask_detection/annotations/
+/YOLOv3_Notebook/face_mask_detection/images/
+/ThirdYOLOv3/yolov3.weights
+/ThirdYOLOv3/model_data/mask/images/
+/YOLOV3_TF2/data/images/
