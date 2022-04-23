@@ -61,6 +61,7 @@ mss
 ## <ins> Training </ins> 
 We trained our Yolov3 and Yolov4 model both on AWS EC2 P3.2xlarge instance with the Tesla A100 graphic card. Later attempts have found that some of the reasonably good hyperparameters for batch sizes of 16 begin with a learning rate of 1e-4 and a learning rate of 1e-6. The training was carried out on the both two networks by 200 epoch.
 To customize your training and evaluation options, make adjustments to ```./Final_YOLOv3_YOLOv4/yolov3/configs.py ```
+Your weights will be stored at ```./Final_YOLOv3_YOLOv4/checkpoints```
 ### Command
 Please go to ```./Final_YOLOv3_YOLOv4```, and run
 ```
