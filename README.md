@@ -36,8 +36,13 @@ The training datasets of all the models we used in this project are:
 1. For YOLOv3 and YOLO v4: https://www.kaggle.com/datasets/andrewmvd/face-mask-detection
 2. For self-trained model: https://www.kaggle.com/datasets/ashishjangra27/face-mask-12k-images-dataset
 
-## Requirements.txt
-"""
+## <ins>Requirements</ins>
+### Run this command to install requirements.txt
+```
+pip install -r requirements.txt
+```
+### Recommended requirements file
+```
 numpy>=1.18.2
 scipy>=1.4.1
 wget>=3.2
@@ -50,8 +55,15 @@ pandas
 awscli
 urllib3
 mss
-"""
+```
 ## <ins> Training </ins> 
 We trained our Yolov3 and Yolov4 model both on AWS EC2 P3.2xlarge instance with the Tesla A100 graphic card. Later attempts have found that some of the reasonably good hyperparameters for batch sizes of 16 begin with a learning rate of 1e-4 and a learning rate of 1e-6. The training was carried out on the both two networks by 200 epoch.
-
-
+### Command
+```
+python train.py
+```
+## <ins> Quick Demo</ins>
+You can run this command to see a demo after the model is trained
+```
+python detection_demo.py
+```
