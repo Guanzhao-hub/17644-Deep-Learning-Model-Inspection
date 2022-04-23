@@ -24,7 +24,10 @@ The source code of the attribution method is based on:
 2. https://www.tensorflow.org/tutorials/interpretability/integrated_gradients
 
 The trained model of the self-built neural network is accessible at here: 
-https://drive.google.com/drive/folders/1fx5AHpfKxUtTXtDmu4w2S065fD12OIHn?usp=sharing
+Model after training by 200 epochs: https://drive.google.com/drive/folders/1fx5AHpfKxUtTXtDmu4w2S065fD12OIHn?usp=sharing
+Model using L1 regularization and early stopping: https://drive.google.com/drive/folders/17zyHpz1TEGLtwZJQHcmCdrsEjGguPybw?usp=sharing
+
+
 
 
 ## <ins> Dataset </ins>
